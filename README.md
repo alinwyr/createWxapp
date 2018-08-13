@@ -1,2 +1,2 @@
-# mini-mapCar
-mini-mapCar
+# create-wxapp
+create-wxapp

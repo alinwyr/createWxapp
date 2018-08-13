@@ -1,0 +1,11 @@
+.userInfo {
+  padding: 30rpx;
+}
+.userItem {
+  margin-top: 15rpx;
+  color: #a9a9a9;
+}
+.userItem text {
+  display: block;
+  color: #000;
+}

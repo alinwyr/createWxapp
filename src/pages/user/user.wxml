@@ -1,0 +1,7 @@
+<view class="userInfo">
+  <view class="userItem"><text>title:</text>{{userInfo.title}}</view>
+  <view class="userItem"><text>email:</text>{{userInfo.email}}</view>
+  <view class="userItem"><text>website:</text>{{userInfo.website}}</view>
+  <view class="userItem"><text>address:</text>{{userInfo.address}}</view>
+  <view class="userItem"><text>bio:</text>{{userInfo.bio}}</view>
+</view>

@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="motto">
+    <image class="face" src="./../../images/face.png" background-size="cover"></image>
+	<view class="user-motto">{{motto}}</view>
+  </view>
+  <view class="powered">
+    <button  bindtap="bindViewUser" >user</button>
+	<button  bindtap="bindViewLogs" >logs</button>
+  </view>
+</view>

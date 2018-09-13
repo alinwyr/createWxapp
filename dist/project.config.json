@@ -13,12 +13,12 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.2.2",
 	"appid": "wx21a3fc80101d4f2d",
-	"projectname": "%E6%83%A0%E5%85%BB%E8%BD%A6",
-	"svr": "",
-	"client": "",
-	"qcloudRoot": "",
-	"miniprogramRoot": "",
-	"pluginRoot": "",
+	"projectname": "createWxapp",
+	"svr": "/",
+	"client": "/",
+	"qcloudRoot": "/",
+	"miniprogramRoot": "/",
+	"pluginRoot": "/",
 	"scripts": {},
 	"condition": {
 		"search": {

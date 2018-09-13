@@ -1,7 +1,6 @@
 import request from './network/fetch'
 import Navigator from './utils/navigator'
 import Event from './utils/event'
-import sys from './utils/system'
 
 App({
   onLaunch () {
@@ -16,9 +15,6 @@ App({
     unionId: null, // 全局的unionId
     openId: null, //  全局的openid
     userInfo: null, //  用户信息
-    // 6.5.6以下会触发page的onShow两次，故更低的版本均不可使用小程序
-    isHighVersionThan656: sys.getWXVersion().number >= 656,
-    isHighSDKVersion170: sys.getSDKVersion().number >= 170
   },
   // 自定义 request
   request (apiName, reqParams, ...option) {

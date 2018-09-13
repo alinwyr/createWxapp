@@ -26,10 +26,6 @@ var _event = __webpack_require__(119);
 
 var _event2 = _interopRequireDefault(_event);
 
-var _system = __webpack_require__(120);
-
-var _system2 = _interopRequireDefault(_system);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 App({
@@ -45,10 +41,7 @@ App({
     code: null,
     unionId: null, // 全局的unionId
     openId: null, //  全局的openid
-    userInfo: null, //  用户信息
-    // 6.5.6以下会触发page的onShow两次，故更低的版本均不可使用小程序
-    isHighVersionThan656: _system2.default.getWXVersion().number >= 656,
-    isHighSDKVersion170: _system2.default.getSDKVersion().number >= 170
+    userInfo: null //  用户信息
   },
   // 自定义 request
   request: function request(apiName, reqParams) {

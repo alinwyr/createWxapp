@@ -4,14 +4,13 @@
   "description": "createWxapp",
   "scripts": {
     "webpack": "webpack",
-	"mock": "cross-env API_HOST=mock webpack --watch & node ./mock/index.js ",
-	"mock:lint": "cross-env LINT=true API_HOST=mock webpack --watch & node ./mock/index.js ",
-	"dev": "cross-env API_HOST=alpha webpack --watch ",
-	"dev:lint": "cross-env LINT=true API_HOST=alpha webpack --watch",
-	"dev-b": "cross-env API_HOST=beta webpack --watch ",
-	"dev-b:lint": "cross-env LINT=true  API_HOST=beta webpack --watch ",
-	"dev-r": "cross-env API_HOST=release webpack --watch ",
-	"dev-r:lint": "cross-env LINT=true API_HOST=release webpack --watch ",
+    "mock": "cross-env API_HOST=mock webpack --watch & nodemon ./mock/index.js ",
+    "dev": "cross-env API_HOST=alpha webpack --watch ",
+    "dev:lint": "cross-env LINT=true API_HOST=alpha webpack --watch",
+    "dev-b": "cross-env API_HOST=beta webpack --watch ",
+    "dev-b:lint": "cross-env LINT=true  API_HOST=beta webpack --watch ",
+    "dev-r": "cross-env API_HOST=release webpack --watch ",
+    "dev-r:lint": "cross-env LINT=true API_HOST=release webpack --watch ",
     "build": "cross-env API_HOST=alpha NODE_ENV=production webpack --env.min",
     "build-b": "cross-env API_HOST=beta NODE_ENV=production webpack --env.min",
     "build-r": "cross-env API_HOST=release NODE_ENV=production webpack --env.min"
@@ -22,9 +21,13 @@
   "engines": {
     "node": ">=4.2.1"
   },
+  "nodemonConfig": {
+    "ignore": ["configs/*", "dist/*", "node_modules", "src/*", "package.json" , "package-lock.json"],
+    "delay": "1000"
+  },
   "devDependencies": {
     "babel-core": "^6.24.0",
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "^9.0.0",
     "babel-loader": "^7.1.5",
     "babel-minify-webpack-plugin": "^0.3.0",
     "babel-plugin-lodash": "^3.3.4",
@@ -43,6 +46,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "express": "^4.16.3",
     "file-loader": "1.1.11",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.2",
     "install": "^0.12.1",
     "npm": "^6.3.0",
@@ -50,6 +54,8 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "webpack": "^3.8.1",
+    "webpack-dev-middleware-hard-disk": "^1.12.1",
+    "webpack-hot-middleware": "^2.23.1",
     "wxapp-webpack-plugin": "^0.17.1",
     "wxml-loader": "^0.2.1"
   },
@@ -72,7 +78,6 @@
       "window",
       "alert",
       "Location",
-      "my",
       "Image",
       "Page"
     ]

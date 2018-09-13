@@ -1,16 +1,16 @@
-import { resolve } from 'path';
-import {
-	DefinePlugin,	//允许在编译时配置全局常量
-	EnvironmentPlugin, //使用DefinePluginon process.env键的 速记
-	optimize //在优化阶段开始时触发
-} from 'webpack';
-import WXAppWebpackPlugin from 'wxapp-webpack-plugin';
-import MinifyPlugin from 'babel-minify-webpack-plugin';
-
+let path = require('path')
+let resolve = path.resolve
+let webpack = require("webpack");
+let DefinePlugin = webpack.DefinePlugin;	//允许在编译时配置全局常量
+let EnvironmentPlugin = webpack.EnvironmentPlugin;	//使用DefinePluginon process.env键的 速记
+let optimize = webpack.optimize;	//在优化阶段开始时触发
+let WXAppWebpackPlugin = require("wxapp-webpack-plugin").default;
+let MinifyPlugin = require('babel-minify-webpack-plugin');
 const { NODE_ENV, LINT , API_HOST} = process.env;
 const isDev = NODE_ENV !== 'production';
 const shouldLint = !!LINT && LINT !== 'false';
 const srcDir = resolve('src');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 
 const relativeFileLoader = (ext = '[ext]') => ({
@@ -21,8 +21,7 @@ const relativeFileLoader = (ext = '[ext]') => ({
 		context: srcDir
 	}
 });
-
-export default (env = {}) => {
+let config = (env = {}) => {
 	const min = env.min;
 	return {
 		entry: {
@@ -41,7 +40,7 @@ export default (env = {}) => {
 				{
 					test: /\.js$/,
 					include: /src/,
-					exclude: /node_modules/,
+					exclude: [/node_modules/],
 					use: ['babel-loader',shouldLint && 'eslint-loader'].filter(Boolean)
 				},
 				{
@@ -56,15 +55,15 @@ export default (env = {}) => {
 				},
 				{
 					test: /\.styl$/,
-					include: /src/,
+					include: /src/,	
 					use: [
 						relativeFileLoader('wxss'),
 						{
 							loader: 'stylus-loader',
 							options: {
-								includePaths: [resolve('src', 'styles'), resolve('src')]
-							}
-						}
+								includePaths:  resolve('src')
+							},
+						},
 					]
 				},
 				{
@@ -99,15 +98,18 @@ export default (env = {}) => {
 				clear: !isDev
 			}),
 			new optimize.ModuleConcatenationPlugin(),
-			min && new MinifyPlugin()
+			min && new MinifyPlugin(),
+			new FriendlyErrorsWebpackPlugin()
 		].filter(Boolean),
 		// devtool: isDev ? 'source-map' : false,  不设置了，source-map对我用处不大
 		resolve: {
 			modules: [resolve(__dirname, 'src'), 'node_modules']
 		},
+		// watch:API_HOST == 'mock' ? true :false,
 		watchOptions: {
-			ignored: /dist/,
+			ignored: ['node_modules/**', 'dist/**'],
 			aggregateTimeout: 300
 		}
 	};
 };
+module.exports = config

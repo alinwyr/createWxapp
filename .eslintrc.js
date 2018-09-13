@@ -4,7 +4,10 @@ module.exports = {
 	root: true,
 	parser: 'babel-eslint',
     parserOptions: {
-		sourceType: "module",
+        sourceType: "module",
+        ecmaFeatures: {
+            experimentalObjectRestSpread: true,
+        }
     },
     env: {
         browser: true,
@@ -24,6 +27,7 @@ module.exports = {
 		"prefer-promise-reject-errors":0
     },
     globals: {
+        _: true,
         App: true,
         Page: true,
         getApp: true,
@@ -34,7 +38,7 @@ module.exports = {
         window: true,
         alert: true,
         Location: true,
-        my: true,
-        Image: true
+        Image: true,
+        range: true
     },
 }
